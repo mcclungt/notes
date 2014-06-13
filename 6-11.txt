@@ -80,3 +80,54 @@ High Score Low Score
 55
 
 98
+
+---------
+//Notes
+---------
+
+- event.preventDefault() => If this method is called, the default action of the event will not be triggered.
+
+- for your event methods, make .done(success) and .fail(failure) methods
+
+- request.xhr? detects ajax events on the server.  if SO => set content_type to :json and return key-value pair.to_json
+
+- js understands :json so convert in Controller
+
+- $( 'path' ).text(someText) => displays someText for all 'path' elements
+
+- .serialize() encodes a set of form elements as a string for submission
+
+------------------
+Javascript Canvas
+------------------
+- take any element, put it inside of a canvas tag
+<canvas id="canvas" width="1240" height="600"></canvas>
+- takes an area that you can "paint" on (transparent)
+
+var context;
+context = document.getElementById('canvas').getContext('2d');
+var exampleImage = new Image; // built in js class
+function init(data) {
+	exampleImage.src ('image/path')
+
+}
+
+function render() {
+	first need to context.clear (pseudocode)
+	call methods to move/animate objects
+}
+
+----------------------
+Advanced ActiveRecord
+----------------------
+- redo AdvancedAR challenge
+
+create_table :comments do |t|
+	t.text :body
+	t.integer :points
+	t.belongs_to :post
+
+	t.timestamps
+end
+
+add_index :comment, :post_id//<-----
