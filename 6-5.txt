@@ -41,8 +41,8 @@ end
 -the Web is stateless (each new HTTP request has a new TCP/IP connection)
 -how can we hack state onto HTTP for purposes such as login?
 	-post request via a form (e.g. post/get where user_id = 2324114)	-	Request body
-	-url (e.g. facebook.com/user_id=2324114)							-	Query params
-	-headers (e.g. Current User ID: 2324114)							-	Headers
+	-url (e.g. facebook.com/user_id=2324114)				-	Query params
+	-headers (e.g. Current User ID: 2324114)				-	Headers
 
 Query params -> [CONS]lacks privacy, noisy urls, repeat url in every link
 
