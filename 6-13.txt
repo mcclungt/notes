@@ -27,10 +27,11 @@ X. 	git merge master  <-----|magic|
 XI.	merge conflicts? git status
 
 XII.	check files, see the <<<<<<< HEAD
-							 my stuff
-							 =======
-							 other stuff
-							 >>>>>>> master
+			     my stuff
+			     =======
+			     other stuff
+			     >>>>>>> master
+							 
 XIII. 	make appropriate changes, then add, commit, and push to 'lorem ipsum'
 
 XIV.	attempt a merge. should work!
