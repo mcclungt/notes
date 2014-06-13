@@ -1,0 +1,82 @@
+// Check out JavaScript Canvas --
+
+// 1 get to increment the vote
+// response handler gets the response
+// find place where vote is stored
+// update page
+// find arrow, change color (css)
+
+// Areas of improvement:
+// Understanding passing strings to decode into keys + values
+
+---------
+//JavaScript
+---------
+
+var request = $.get("/scores");
+
+request.done(function(response) {
+	// var scores = response.split(" ");
+	// response.high_score;
+	// response.low_score;
+	// console.log(response);
+	if (response.message === "success") {
+		$("#high").text(response.high_score);
+		$("#low").text(response.low_score);
+		response.recent_scores.forEach(function(score) {
+			$("body").append("<p>" + score + "</p>");
+		});
+	} else {
+		alert("oh no!");
+	}
+	//$("body").append(response);\
+});														  \
+														  	 \
+---------													\
+//Controller											 \
+---------     										  \
+				  													 |> This is the response
+get "/" do 													/
+	@high_score = "N/A"   					 /
+	@low_score = "N/A"  						/
+	erb :index										 /
+end															/
+								//						 /
+get "/scores" do// 						/
+	//"High Score: 99, Low Score: 3" 
+	@high_score = 99
+	@low_score = 3
+	content_type :json//<-- default is html, redefining it to json, avoid having to manual parse (var response = JSON.parse(response);)
+	{high_score: @high_score, low_score: @low_score recent_scores: [9, 12, 55, 98]}.to_json
+	message: "success"
+	//erb: scores, layout: !request.xhr?
+end
+
+---------
+//HTML (fragmented)
+---------
+
+<table>
+<thead>
+<tr>
+<th>High Score</th>
+<th>Low Score</th>
+
+---------
+//View
+---------
+	   						__						 _	_
+|		 _  _  _|  |__   _  _  ._ |_ \
+|__ |_||_\|_|	  __| |_ |_| |  |_ _\
+
+High Score Low Score
+ ___________________
+|99_______|3________|
+
+9
+
+12
+
+55
+
+98

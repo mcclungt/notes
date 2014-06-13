@@ -1,0 +1,47 @@
+ACTIVE RECORD
+	3 associations (class methods):
+		-belongs_to
+		-has_many
+		-has_one
+	Associations:
+		each association has built in methods (all, find_by, where, etc.)
+
+Stadium (has_one team)
+-name
+
+Team <||||||||||
+-name        |||
+-mascot      |||
+-stadium_id  |||
+		     |||
+Player \     |||
+-name --||||||||
+-number/ 
+-team_id
+
+class Team < AR::etc.
+	has_many :players
+	belongs_to :stadium
+end
+
+class Player
+	belongs_to :team
+end
+
+class Stadium
+	has_one :team
+end
+
+bulls = Team.find_by(class)
+stadium = Stadium.first
+stadium.team = bulls
+stadium.save
+bulls.stadium = stadium
+bulls.save
+(bulls.stadium_id = stadium.id) <-- automatically called by
+(bulls.save)		<--------------	method above
+
+[] with active record we can avoid using _id and .id []
+[]belongs_to always belongs to the table that has the foreign key[]
+
+FOREIGN KEY - reference to another row in another table

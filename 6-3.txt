@@ -1,0 +1,82 @@
+CSS
+	use % for width whenever possible
+
+FLOATS
+	-take the element out of the blox flow and let the other elements wrap around it
+	- {
+		float: left;
+		float: right;
+	}
+
+BROWSER SPECIFIC CSS
+	"user agent stylesheet"
+
+
+* {									/* box-sizing removes margin/padding
+									   from box calculation	*/
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+	}								
+
+POSITION
+	relative vs fixed
+
+SINATRA MVC CONVENTION
+	-multiple controllers etc.
+
+# /orders
+(C)REATE ############
+get "/orders/new" do
+	@order = Order.new
+	erb :"orders.new"
+end
+
+post "/orders" do
+	@order = Order.new(params[:order])
+	if @order.save
+		redirect "/orders"
+	else
+		erb :"orders/new"
+	end
+end
+(R)EAD ##############
+get "/orders/:id" do
+	@order = Order.find(params[:id])
+
+	erb :"orders/show"
+end
+
+get "/orders" do 
+	@orders = Order.all
+	erb :"orders/index"
+end
+(U)PDATE ############
+get "/orders/:id/edit" do
+	@order = Order.find(params[:id])
+	erb :"orders/edit"
+end
+
+put "/orders/:id/" do
+	@order = Order.find(params[:id])
+	if @order.update(params[:order])
+		redirect "/orders/#{@order.id}"
+	else
+		erb: "orders/edit"
+	end
+end
+(D)ELETE ############
+delete "/orders/:id/" do
+	@order = Order.find(params[:id])
+	@order.delete
+
+	redirect "/orders"
+end
+
+FORM SKELETON
+<form action="/orders" method="post">
+	<input name="product"/>
+	<input name="quantity"/>
+	<input name="cc_card"/>
+	<input type="submit"/>
+</form>

@@ -1,0 +1,86 @@
+########################
+##	R  O  U  T  E  S  ##
+########################
+
+get '/' do
+  .. show something ..
+end
+
+post '/' do
+  .. create something ..
+end
+
+put '/' do
+  .. replace something ..
+end
+
+patch '/' do
+  .. modify something ..
+end
+
+delete '/' do
+  .. annihilate something ..
+end
+
+options '/' do
+  .. appease something ..
+end
+
+link '/' do
+  .. affiliate something ..
+end
+
+unlink '/' do
+  .. separate something ..
+end
+
+     ############
+     # SESSIONS #
+     ############
+
+-the Web is stateless (each new HTTP request has a new TCP/IP connection)
+-how can we hack state onto HTTP for purposes such as login?
+	-post request via a form (e.g. post/get where user_id = 2324114)	-	Request body
+	-url (e.g. facebook.com/user_id=2324114)							-	Query params
+	-headers (e.g. Current User ID: 2324114)							-	Headers
+
+Query params -> [CONS]lacks privacy, noisy urls, repeat url in every link
+
+Request body -> [CONS]doesn't work with GET requests
+
+Headers 	 -> [CONS]can't be affected by web browser
+
+	->COOKIES<-
+
+- "Cookie:" is an HTTP header. Both client and server agree to populate this header.
+
+- Cookies can be created/changed/deleted locally (in browser) or on the server.
+
+- Changes to cookies for a domain are shared via the Cookies header (included in both the request & response time).
+
+- Browsers can save cookies locally. Servers will only save cookies temporarily.
+
+	->SECURITY<-
+
+class Session < ActiveRecord::Base
+	require 'securerandom'
+	serialize :data
+	before_create :set_secure_key
+
+	def set_secure_key
+		self.secure_key = SecureRandom.hex
+	end
+end
+
+# app.rb
+enable :sessions <---
+
+post "/login" do
+	user = User.find_by(email: params[:email], password: params[:password])
+	#session = Session.create(data: {user_id: user.id})
+	#cookies[:session_id] = session.secure_key
+	session[:user_id] = user.id <---
+end
+
+
+

@@ -1,0 +1,29 @@
+$(document).ready(function() {
+	$("#quote_body").on('keyup', function() {
+		var currentCount = $currentCount = $(this).val().length;
+		$("count").html(currentCount);
+
+		if (currentCount > 20) {
+			$("#body-length-status").addClass("over-limit");
+		} else {
+			$('#body-length-status').removeClass("over-limit");
+		}
+	});
+
+	$("#new_quote").on('submit', function(e) {
+		e.preventDefault();
+		var form = this;
+		$.post( $(this).attr('action'),			  //v------------- Response can be passed via parameter
+		 		$(this).serialize() ).done(function(r) {
+					form.reset();//^------------------------------ Takes form data and turns it into a string
+	   			});			//^----------------------------------- Reset form, cannot be called on ($) objects
+// Same  <
+//  as    \	 (MOSTLY)
+// above   \
+		$.ajax({
+		url: $(form).attr('action'),
+		type: "POST",
+		data $(form).serialize()
+		});
+	});
+});

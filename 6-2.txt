@@ -1,0 +1,51 @@
+HTTP -
+	HyperText Transfer Protocol
+	(as opposed to HyperLink)
+
+	-Client always initiates connection (pull)
+	-Doesn't hold state
+	-Text protocol (human readable)
+	-Extensible response types
+
+URL  -
+	http://www.yelp.com/search?find_desc=tacos
+[ protocol ][   host   ][     path     ][param]
+ 	-No http(s), not secure
+
+COMMUNICATING IN TRIPLETS	-
+	- Start Line
+	- Headers
+	- Body(*optional)
+
+REQUEST START Line-
+	GET http://devbootcamp.com HTTP/1.1
+	- HTTP METHOD	
+	- URL
+
+HTTP VERBS-
+	-Get, Post, Put, Delete
+	-Get is considered a 'safe' verb
+	-Get, Put, and Delete are idempotent
+	-PUT - update a value within a data structure
+
+REQUEST HEADERS-
+	-Key:Value
+	-Accept, Content-Type, XMLHTTPRequest
+
+REQUEST BODY(optional)-
+	-Should match format of Content-Type 
+
+RESPONSE START Line-
+	-HTTP/1.1 200 OK
+
+RESPONSE Headers AND Body-
+	-content
+
+<----->
+.gitkeep -> folder won't be deleted (-a) -> show hidden files
+.DS_Store -> keeps how files are organized
+<----->
+
+FORM-
+	ACTION - where you will send data(action="/trucks")
+	METHOD - type of method you will use(method="POST")

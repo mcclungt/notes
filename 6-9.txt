@@ -1,0 +1,4 @@
+# Javascript
+
+- Used in every single browser, can be distributed to any web device
+- 
