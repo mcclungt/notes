@@ -1,0 +1,40 @@
+~ horizontal navbar css ~
+
+-display: inline-block;
+-line-height fixes vertical align
+- li~li { border-left: 1px solid white } /* only effects li's that have an li to their left (preceeding them) */
+
+
+
+~ create and deploy heroku app ~
+
+
+I. 		$ heroku login (login credentials)
+
+II. 	generate SSH key if necessary
+
+III. 	write/get app
+
+IV.		Specify ruby version and other dependencies with a Gemfile
+
+V.		Run $ bundle install
+
+VI.		Create a Procfile to declare process types
+
+VII.	$ foreman start # to run app locally, ctrl-c to stop once it looks good
+
+VIII.	$ git init
+		$ git add .
+		$ git commit -m "init"
+
+IX.		$ heroku create
+
+X.		$ git push heroku master
+
+afterward~
+
+	-run $ heroku open #to open the site on heroku.com
+
+	-$ heroku ps #to see the state
+
+	-$ heroku ps:scale web=1 #sets to one dyno
