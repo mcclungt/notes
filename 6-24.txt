@@ -1,0 +1,94 @@
+PUT vs PATCH
+-------------
+
+Patch - patch some of the information
+
+Put - rewrite everything
+
+-Forms will default to patch unless type is specified
+
+-------------
+    RSPEC
+-------------
+group :development, :test do
+	
+end
+
+require 'spec_helper'
+
+describe Baller do
+	it "has a name" do
+		subject.should respond_to(:name)
+	end
+
+	it "defaults to awesome" do
+		subject.should be_awesome   #<---looks for method "awesome?"
+	end
+
+	describe "#name" do
+		it "errors if there is no name" do
+			subject.save
+			subject.errors.messages[:name]?
+			# subject.save.should be_true
+		end
+	end
+
+	describe "#jersey" do
+		it "is an integer" do
+			subject.jersey = 2
+			subject.save
+			subject.errors.messages[:jersey].should be_nil
+		end
+
+		it "can't be a decimal" do
+			subject.jersey = 2.4
+			subject.save
+			subject.errors.messages[:jersey].should be_nil
+		end
+
+		it "can't be a an empty string" do
+			subject.jersey = ""
+			subject.save
+			subject.errors.messages[:jersey].should be_nil
+		end
+	end
+
+	describe ".yo" do
+
+	end
+end
+
+respond_to
+
+http://www.relishapp.com/rspec
+
+-----------------
+ Controller_Spec
+-----------------
+
+describe BallerController do
+	describe "#index" do
+		it "returns successfully" do
+			get :index
+			expect(response).to have_http_status(200)
+		end
+	end
+
+	describe "#new" do
+		context "when valid params are passed" do
+			let(:params) {{ name: 'LaBron', jersey: 4, sponsor: 'Gatorade'}}
+				# => Should be 'LeBron', 6, and Nike
+			it "creates a baller" do
+				expect {
+					post :create, params
+				}.to change(Baller, :all).by(1)
+		end
+	end
+
+	context "when invalid params are pass" do
+		let(:params) {{}}
+		expect {
+			post :create baller:
+		}
+	end
+end
