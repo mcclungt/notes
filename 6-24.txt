@@ -77,7 +77,7 @@ describe BallerController do
 	describe "#new" do
 		context "when valid params are passed" do
 			let(:params) {{ name: 'LaBron', jersey: 4, sponsor: 'Gatorade'}}
-				# => Should be 'LeBron', 6, and Nike
+				# => Should be 'LeBron', 6, and 'Nike'
 			it "creates a baller" do
 				expect {
 					post :create, params
@@ -85,10 +85,55 @@ describe BallerController do
 		end
 	end
 
-	context "when invalid params are pass" do
+	context "when invalid params are passed" do
 		let(:params) {{}}
 		expect {
 			post :create baller:
 		}
+	end
+end
+
+-------------------------------------------------------------------
+  ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+-------------------------------------------------------------------
+
+require 'spec_helper'
+
+describe UserController do
+	describe "#new" do
+		it "renders new page" do
+			get :new
+			expect(response).to render_template(:new)
+		end
+
+		it "assigns a user object" do
+			get :new
+			expect(assigns(:user)).to be_a_new(User)
+		end
+	end
+
+	describe "#create" do
+		context "when valid params are passed" do
+			let(:params) { { email: 'blahty@blah.com' } }
+
+			it "redirects to show" do
+				post :create
+				expect(response).to redirect_to(user_path(User.last))
+			end
+
+			it "creates a new user" do
+				expect {
+					post :create
+				}.to change { User.count }.by(1)
+			end
+		end
+	end
+
+	describe "#show" do
+		it "assigns the user" do
+			u = User.create!
+			get :show, id: u.id
+			expect(assigns(:user)).to u
+		end
 	end
 end
