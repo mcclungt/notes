@@ -106,6 +106,24 @@ Person.create(person_params)
  named routes (as)
 -------------------
 
+
 ----------------------------
  url helpers (url and path)
 ----------------------------
+
+www.google.com/mail
+|____________||___|
+    DOMAIN     PATH
+|_________________|
+        URL
+
+CREATE  GET        '/posts/new'       => posts#new,   as: new_posts.path      --------->      returns '/posts/new'
+        POST       '/posts'           => posts#create
+
+READ    GET        '/posts/:id'       => posts#show,  as: post_path
+        GET        '/posts'           => posts#index, as: posts_path
+                                                        ^------ note plural       
+UPDATE  GET        '/posts/:id/edit'  =>              as: edit_post_path      --------->      new_post_path
+        PUT/PATCH  '/posts/:id'       =>                                                      new_post_url
+
+DELETE  DELETE     '/posts/:id'       =>
