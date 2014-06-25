@@ -1,0 +1,74 @@
+RRRRR     A     I   L      ZZZZZZZ
+R   R    A A    I   L       Z
+RRRR    AAAAA   I   L         Z
+R  R    A   A   I   L           Z
+R   R   A   A   I   LLLLL  ZZZZZZZ
+
+TTTTT     A     L      K   K   ZZZZZZZ
+  T      A A    L      K K      Z
+  T     AAAAA   L      KK         Z
+  T     A   A   L      K K          Z
+  T     A   A   LLLLL  K   K   ZZZZZZZ
+
+---------
+ link_to
+---------
+
+ <% link_to +"Service",
+		new.source.path(:account_id => acct:id)
+									 (:if => current_user) %>
+
+		link_to_if(current_user, "Bananas", "banana_path")
+
+----------
+ form_for
+----------
+
+-Creates a form that can use/edit data from the controller
+
+<ul>
+<%= form_for @post do |f| %>
+	<li>
+		<%= f.label :title %>
+		<%= f.text_field :title %>
+	</li>
+	<li>
+		<%= f.label :body %>
+		<%= f.text_field :body %>
+	</li>
+	<li>
+		<%= f.submit %>
+	</li>
+	<% end %>
+</ul>
+
+-as: - calls a prefix for a route
+
+--------------------
+ virtual attributes
+--------------------
+
+~ giving your forms flexibility when transferring data between the model and the db ~
+
+#MODEL:
+
+def fullname(name)
+	name.split("")      #splits the first name and last name into two strings
+end
+
+def full
+	self.first_name = fullname[0]
+end
+
+other example: validations (in the model)
+
+-------------------
+ strong parameters
+-------------------
+
+sets whitelist and/or blacklist for allowed parameters
+
+#CONTROLLER
+person_params = Params.require(:person).permit(:name,:address)
+
+Person.create(person_params)
