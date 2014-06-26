@@ -102,11 +102,6 @@ Person.create(person_params)
 	end
 	resources :wines, path: "vino"                                         <------>   root GET  /vino/etc... (renames all to vino)
 
--------------------
- named routes (as)
--------------------
-
-
 ----------------------------
  url helpers (url and path)
 ----------------------------
@@ -127,3 +122,115 @@ UPDATE  GET        '/posts/:id/edit'  =>              as: edit_post_path      --
         PUT/PATCH  '/posts/:id'       =>                                                      new_post_url
 
 DELETE  DELETE     '/posts/:id'       =>
+
+-------------------
+ named routes (as)
+-------------------
+
+resources :users                         -> gives you a large set of routes
+
+get '/profile => 'users#show'            -> get /profile(.:format) users#show
+
+get '/profile' => 'users#show' as: home  -> get /profile(.:format) users#show  (home_path will get this route)
+
+-------------------
+ refactoring views
+-------------------
+
+<div id="banner">
+	<a href="www.ads.com"><img src="/imgs/banner.png"></a>
+</div>
+
+<h1>Products</h1>
+
+<p> Here are a few of our fine products:</p>
+
+
+<footer>
+	<p>Email: <a href="mailto:products@services.edu">products@services.edu</a></p>
+</footer>
+
+								--------
+
+
+<%= render "shared/ad_banner" %> ----> _ad_banner.html.erb
+ 
+<h1>Products</h1>
+ 
+<p>Here are a few of our fine products:</p>
+
+<%= render "shared/footer" %>	-------> _footer.html.erb
+
+
+								--------
+
+
+<%= render "shared/ad_banner" %>
+
+<%= render "shared/footer" %> -------> _footer.html.erb now
+																			contains products header
+																			and paragraph
+
+------
+ HAML
+------
+
+- markup language used to describe html
+
+
+ ~ HTML ~
+<section class="container">
+  <h1><%= post.title %></h1>
+  <h2><%= post.subtitle %></h2>
+  <div class="content">
+    <%= post.content %>
+  </div>
+</section>
+
+
+
+ ~ HAML ~ 
+%section.container
+  %h1= post.title
+  %h2= post.subtitle
+  .content
+    = post.content    
+
+------------
+ Turbolinks
+------------
+
+- add to gemfile, require in environments 'turbolinks'
+
+- can change route and body without reloading location
+
+- by default applies to every link on your page (unless <a href='/' data-no-turbolink >)
+
+- doesn't work with jquery unless you bind: 
+$(document).ready({
+	$(function(){
+	initPage();
+	});
+	$(window).bind('page:change', function(){
+		initPage();
+	});
+});
+	because jquery works on page load
+
+--------------
+ environments
+--------------
+
+Three environments:
+- development      -> full error messages
+- production       -> minifies all assets (single block of code) and concatenates html/css
+- test
+
+- each can have .rb files in config/environments that configure each environment
+
+- config/application.rb has all default configs
+
+p ENV['RAILS_ENV'] -> will show your environment
+
+ex. config.colorize_logging = true -> log will now be colorized
+

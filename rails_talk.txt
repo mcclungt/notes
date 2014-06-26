@@ -1,0 +1,33 @@
+<div id="banner">
+	<a href="www.ads.com"><img src="/imgs/banner.png"></a>
+</div>
+
+<h1>Products</h1>
+
+<p> Here are a few of our fine products:</p>
+
+
+<footer>
+	<p>Email: <a href="mailto:products@services.edu">products@services.edu</a></p>
+</footer>
+
+								--------
+
+
+<%= render "shared/ad_banner" %> ----> _ad_banner.html.erb
+ 
+<h1>Products</h1>
+ 
+<p>Here are a few of our fine products:</p>
+
+<%= render "shared/footer" %>	-------> _footer.html.erb
+
+
+								--------
+
+
+<%= render "shared/ad_banner" %>
+
+<%= render "shared/footer" %> -------> _footer.html.erb now
+																			contains products header
+																			and paragraph
