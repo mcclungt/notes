@@ -1,0 +1,13 @@
+PANDORA
+
+- splash screen simply states what the site does, prompts user for an artist, genre or composer
+	- sleek background
+	- header lets you register, login, or get help
+	- company, music, and pandora resource links at the bottom
+
+- entering critera immediately brings you to the player, layered on top of the screen (separate from the rest)
+	- header has a nav bar which controls the player
+	- has album art and previous songs in the middle
+	- designed to look like a media player app
+	- bottom has lyrics (if available), artist bio, and similar artists, publish, share, or buy track
+	- color scheme allows the player and links to stand out

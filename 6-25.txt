@@ -234,3 +234,88 @@ p ENV['RAILS_ENV'] -> will show your environment
 
 ex. config.colorize_logging = true -> log will now be colorized
 
+---------------
+ serialization
+---------------
+
+- being able to transmit properties in a certain format from one server to another
+
+class User < ActiveRecord::Base
+  serialize :properties
+end
+
+
+#YAML
+user1.properties = { name: "ruben" }
+user1.save
+
+user1.properties[:name]     ---->   "ruben"      
+
+#JSON  <--  preferred for security reasons
+user2.properties = { name: "ruben" }
+user2.save
+user2.properties[:name]     ---->   "ruben"
+
+-------------
+ rspec mocks
+-------------
+
+- when your tests require an instance to be set of a class, you can use mocks
+
+Baller.new               <--- basic format
+
+baller = double(Baller)  <--- creates a baller instance without parameters set
+
+baller = double(Baller, jersey: 20)  <---- creates a baller instance with jersey: 20
+
+- double is an rspec method
+
+allow(baller).to receive(:jersey).and_return("20") <--- will always return 20
+
+die = double(Die)
+
+allow(die).to receive(:roll).and_return(6)         <--- will always return 6
+
+----------------
+ asset pipeline
+----------------
+
+- way to organize assets
+
+- precompile lets you use high level assets
+
+- uses two parts:
+  - sprockets
+	  - compiles and places the assets
+  - tilt
+    - template engine that sprockets use, allowing other filetypes (scss/erb)
+
+rails assets:precompile    <--- compiles and organizes assets
+
+-----------------
+ factoryGirl gem
+-----------------
+
+gem contains:
+	- methods
+	- factories
+	- fixtures
+	- seeds
+	- use
+	- gh
+	- gh rails
+	- thoughtbot
+
+gem methods:
+	-build
+	-create         -> create (like ruby method)
+	-attributes_for -> returns the attributes
+	-build_stubbed
+
+- a factory is an object that is used to create more objects.  used specifically for testing
+
+- fixtures are what rails uses by default to populate tests with dummy data
+
+- seeds are used purely for populating databases. tests should populate with their own data
+
+- in your spec file, create a factories.rb file that holds your factory procedures and populates your db
