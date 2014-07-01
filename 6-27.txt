@@ -1,7 +1,7 @@
 GIT FORK WORKFLOW
 
 git clone timfork URL (set origin to timfork)
-git remote adds upstream cicadasfork URL (adds second remote to cicadasfork)
+git remote add upstream cicadasfork URL (adds second remote to cicadasfork)
 git checkout -b my_feature
 git push origin my_feature
 
