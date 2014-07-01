@@ -1,0 +1,5 @@
+-----------
+ paperclip
+-----------
+
+- ActiveRecord file attachment library

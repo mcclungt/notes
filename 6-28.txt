@@ -1,0 +1,7 @@
+-----------
+ SimpleCov
+-----------
+
+SimpleCov is a code coverage analysis tool for Ruby 1.9. It uses 1.9’s built-in Coverage library to gather code coverage data, but makes processing it’s results much easier by providing a clean API to filter, group, merge, format and display those results, thus giving you a complete code coverage suite with just a couple lines of code.
+	-Christoph Olszowka
+

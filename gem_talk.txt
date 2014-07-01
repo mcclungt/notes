@@ -1,0 +1,92 @@
+  ///////\\\\\\\\
+ //////     \\\\\\
+//////       /////
+//////       /////                                          ///////////////
+//////                                                      ///////////////
+//////                                                                /////
+//////                  ////////\\    //// ////   /////             /////
+//////     ////////    ///    \\\\\   //////////////////          /////
+//////      /////     /////////////   ////    ///    ///        /////
+\\\\\\\    /////      \\\\            ////    ///    ///      /////
+ \\\\\\\  /////        \\\\    ///    ////    ///    ///    ///////////////
+  \\\\\\\/////          \////////     ////    ///    ///    ///////////////
+
+
+---------
+ Fakeweb
+---------
+
+- FakeWeb is a helper for faking web requests in Ruby. It works at a global level, without modifying code or writing extensive stubs.
+- Restart the server every time you use fakeweb
+
+FakeWeb.register_uri(:get, "http://exeample.com/", body: "Some text")
+
+You can write regular expressions
+- write custom statuses 
+- specify content types 
+- whitelist network connections
+- get last request
+- clear FakeWeb
+- or use any as a verb(instead of get). 
+
+---------
+ TimeCop
+---------
+
+- Provides "time travel," "time freezing," and "time acceleration" capabilities
+- Unified method to mock Time.now, Date.today, and DateTime.now in a single call
+
+# Example
+
+describe "the timing of a create" do
+	before do
+		Timecop.freeze(Time.local(1990))
+	end
+
+	after do
+		Timecop.return
+	end
+
+	let(:color) { Color.create(name: 'jello') }
+
+	it "should not allow old colors" do
+		expect(color).to raise_error
+	end
+end
+
+Long range time travel -
+	Can change the concept of "now" for an indeterminate period of time.
+
+---------
+ Chronic
+---------
+
+- Natural date and time parser written for ruby
+
+require 'chronic'
+
+Time.now   #=> Sun Aug 27 23:18:25 PDT 2006
+
+Chronic.parse('tomorrow')
+  #=> Mon Aug 28 12:00:00 PDT 2006
+
+Chronic.parse('monday', :context => :past)
+  #=> Mon Aug 21 12:00:00 PDT 2006
+
+Chronic.parse('this tuesday 5:00')
+  #=> Tue Aug 29 17:00:00 PDT 2006
+
+Chronic.parse('this tuesday 5:00', :ambiguous_time_range => :none)
+  #=> Tue Aug 29 05:00:00 PDT 2006
+
+Chronic.parse('may 27th', :now => Time.local(2000, 1, 1))
+  #=> Sat May 27 12:00:00 PDT 2000
+
+Chronic.parse('may 27th', :guess => false)
+  #=> Sun May 27 00:00:00 PDT 2007..Mon May 28 00:00:00 PDT 2007
+
+Chronic.parse('6/4/2012', :endian_precedence => :little)
+  #=> Fri Apr 06 00:00:00 PDT 2012
+
+Chronic.parse('INVALID DATE')
+  #=> nil
