@@ -90,3 +90,22 @@ Chronic.parse('6/4/2012', :endian_precedence => :little)
 
 Chronic.parse('INVALID DATE')
   #=> nil
+
+--------
+ devise
+--------
+
+- Auto generates controllers/views/routes for files
+- Allows for easy implementation for authentication forms
+
+gem 'devise'
+
+rails generate devise:install
+
+rails generate devise <modelname>      <----->      generates migration, model, and a route for <modelname>
+
+
+
+- Also sets up error handling and password validation
+
+- You can reconfigure views for different types of forms
