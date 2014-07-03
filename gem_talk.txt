@@ -1,11 +1,11 @@
   ///////\\\\\\\\
  //////     \\\\\\
 //////       /////
-//////       /////                                          ///////////////
+//////       /////                                          
 //////                                                      ///////////////
-//////                                                                /////
-//////                  ////////\\    //// ////   /////             /////
-//////     ////////    ///    \\\\\   //////////////////          /////
+//////                                                      ///////////////
+//////                  /\\\\\\\\\    //// ////   /////             /////
+//////     ////////    ////    \\\\   //////////////////          /////
 //////      /////     /////////////   ////    ///    ///        /////
 \\\\\\\    /////      \\\\            ////    ///    ///      /////
  \\\\\\\  /////        \\\\    ///    ////    ///    ///    ///////////////
@@ -109,3 +109,85 @@ rails generate devise <modelname>      <----->      generates migration, model, 
 - Also sets up error handling and password validation
 
 - You can reconfigure views for different types of forms
+
+----
+ D3
+----
+
+- d3_rails gem provides d3.js and d3.min.js files to your asset pipeline
+
+- add gem ;d3_rails', '~> 3.4.8' to gemfile and bundle install
+
+$(document).ready(function() {
+	var canvas = d3.select("#canvas");
+
+	var updateElements = function(data) {
+	var p = canvas.selectAll("p")
+		.data(data)
+		.text(String)
+		.style("color", function(d, i) {
+			return i % 2 ? "blue" : "red";
+		})
+		(tons more code here)
+	}
+})
+
+-------
+ spree
+-------
+
+$ gem install spree (39 dependent gems)
+
+- spree sets up an entire demo e-commerce site on its own
+
+- routes file has one line (mount Spree::Core::Engine => )
+
+- schema is INSANE
+
+- site runs very slow, assets need to be precompiled
+
+- rake routes => soooo many routes
+
+- spree can be good if you want an e-commerce site (well supported) but can be bloated
+
+---------
+ bourbon
+---------
+
+- library for sass (css with superpowers)
+
+# bourbon syntax
+@include box-shadow(0 2px 2px 0 rgba(0, 0, 0, 0.3));
+
+# installing
+gem 'bourbon', $ bundle install
+
+- can add animations to your css, add grids, tints and much more
+
+--------
+ draper
+--------
+
+- adds an object oriented layer of presentation logic to your rails app
+
+def show
+	@article = Article.find(params[:id]).decorate
+end
+
+- ask Raghav, I don't get it
+
+----------
+ bluepill
+----------
+
+gem install bluepill
+
+- keeps your daemons up while taking up as few resources as possible.
+
+--------------
+ coffeescript
+--------------
+
+- Easier way to write javascript in a ruby-ish syntax
+
+- When you find an error, it will display an error like ruby with the line

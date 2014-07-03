@@ -1,5 +1,10 @@
------------
- paperclip
------------
+# -----------
+#  paperclip
+# -----------
 
-- ActiveRecord file attachment library
+- paperclip is a gem made by thoughtbot that is designed to help users easily create file-attachment uploads
+
+- features:
+	- validations based on size and presence
+	- transformation of images into thumbnails
+	- images are treated like attributes, and aren't saved until ActiveRecord::Base#save
